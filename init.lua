@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -673,8 +673,8 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
+        pyright = {},
+        rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -682,8 +682,16 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
-        --
-
+        -- [[SCRIPTING]]
+        docker_compose_language_service = {}, -- npm install -g @microsoft/compose-language-service
+        bashls = {}, -- npm install -g bash-language-server
+        -- [[WEB DEV]]
+        html = {}, -- also install npm install -g vscode-langservers-extracted
+        css_variables = {}, -- npm install -g css-variables-language-server
+        somesass_ls = {}, -- npm install -g some-sass-language-server
+        stylelint_lsp = {}, -- npm i -g stylelint-lsp
+        vtsls = {}, -- you have to install via npm first: npm install -g @vtsls/language-server
+        vue_ls = {}, -- install via npm first: npm install -g @vue/language-server, also npm install -g @vue/language-server FIXME: zum laufen bringen mit doku
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -799,12 +807,12 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
         opts = {},
       },
