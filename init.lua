@@ -744,6 +744,7 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'prettierd',
+        'stylelint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -794,7 +795,7 @@ require('lazy').setup({
           return nil
         else
           return {
-            timeout_ms = 2000,
+            timeout_ms = 5000,
             lsp_format = 'fallback',
           }
         end
@@ -803,9 +804,10 @@ require('lazy').setup({
         lua = { 'stylua' },
         javascript = { 'prettierd' },
         typescript = { 'prettierd' },
-        vue = { 'prettierd' },
-        css = { 'prettierd' },
-        scss = { 'prettierd' },
+        vue = { 'prettierd', 'stylelint' },
+        css = { 'stylelint' },
+        scss = { 'stylelint' },
+        sass = { 'stylelint' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
