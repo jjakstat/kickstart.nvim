@@ -670,6 +670,14 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+      local vue_language_server_path = vim.fn.stdpath 'data' .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
+      local vue_plugin = {
+        name = '@vue/typescript-plugin',
+        location = vue_language_server_path,
+        languages = { 'vue' },
+        configNamespace = 'typescript',
+      }
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -683,15 +691,26 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         -- [[SCRIPTING]]
-        docker_compose_language_service = {}, -- npm install -g @microsoft/compose-language-service
-        bashls = {}, -- npm install -g bash-language-server
+        docker_compose_language_service = {},
+        bashls = {},
         -- [[WEB DEV]]
-        html = {}, -- also install npm install -g vscode-langservers-extracted
-        css_variables = {}, -- npm install -g css-variables-language-server
-        somesass_ls = {}, -- npm install -g some-sass-language-server
-        stylelint_lsp = {}, -- npm i -g stylelint-lsp
-        vtsls = {}, -- you have to install via npm first: npm install -g @vtsls/language-server
-        vue_ls = {}, -- install via npm first: npm install -g @vue/language-server, also npm install -g @vue/language-server FIXME: zum laufen bringen mit doku
+        html = {},
+        css_variables = {},
+        somesass_ls = {},
+        stylelint_lsp = {},
+        vtsls = { -- Setup for vue, see :help lspconfig-all "vtsls", you also have to install language server globally: npm install -g @vue/language-server
+          settings = {
+            vtsls = {
+              tsserver = {
+                globalPlugins = {
+                  vue_plugin,
+                },
+              },
+            },
+          },
+          filetypes = tsserver_filetypes,
+        },
+        vue_ls = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -741,6 +760,11 @@ require('lazy').setup({
           end,
         },
       }
+      -- nvim uses config and enable instead of setup since version 0.11
+      for name, config in pairs(servers) do
+        vim.lsp.config(name, config)
+      end
+      vim.lsp.enable(servers)
     end,
   },
 
