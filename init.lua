@@ -205,6 +205,18 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
+-- [[ Personal Keymaps ]]
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down and center cursor' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up and center cursor' })
+vim.keymap.set('n', '<leader>o', 'a<Enter><Esc>O', { desc = 'Open new line between two characters' })
+vim.keymap.set('n', '<leader>p', 'o<Esc>p', { desc = 'Paste into new line' })
+
+vim.keymap.set('i', 'jj', '<ESC>', { desc = 'Exit insert Mode' })
+vim.keymap.set('i', 'jk', '<ESC><S-a>', { desc = 'Move to the end of line in insert mode' })
+vim.keymap.set('i', 'j;', '<ESC><S-a>;<ESC>o', { desc = 'Add semicolon to the end of the line and open a new one' })
+vim.keymap.set('i', 'j,', '<ESC><S-a>,<ESC>o', { desc = 'Add comma to the end of the line and open a new one' })
+vim.keymap.set('i', 'jm', '<ESC>o', { desc = 'Open new line in insert mode' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
