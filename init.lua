@@ -861,6 +861,7 @@ require('lazy').setup({
         opts = {},
       },
       'folke/lazydev.nvim',
+      'jdrupal-dev/css-vars.nvim', -- automatically scans css variables in project for autocompletion
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
@@ -906,9 +907,13 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'css_vars' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          css_vars = {
+            module = 'css-vars.blink',
+            opts = { cmp_filetypes = { 'css', 'scss', 'sass', 'less', 'vue' } },
+          },
         },
       },
 
