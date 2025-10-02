@@ -710,7 +710,9 @@ require('lazy').setup({
         css_variables = {},
         somesass_ls = {},
         stylelint_lsp = {},
-        vtsls = { -- Setup for vue, see :help lspconfig-all "vtsls", you also have to install language server globally: npm install -g @vue/language-server
+        vtsls = {
+          -- Setup for vue, see :help lspconfig-all "vtsls", you also have to install
+          -- language server globally: npm install -g @vue/language-server
           settings = {
             vtsls = {
               tsserver = {
@@ -855,6 +857,7 @@ require('lazy').setup({
             'rafamadriz/friendly-snippets',
             config = function()
               require('luasnip.loaders.from_vscode').lazy_load()
+              require('luasnip.loaders.from_snipmate').lazy_load()
             end,
           },
         },
