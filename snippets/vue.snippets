@@ -8,3 +8,17 @@ snippet sfc
 
  <style lang="scss" scoped>
  </style>
+
+snippet props
+ const props = defineProps({
+   ${1}: {
+     type: ${2},
+     default: ${3}
+   },
+ })
+
+snippet newProp
+   ${1}: {
+     type: ${2},
+     default: ${3},
+   },
