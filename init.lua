@@ -217,6 +217,11 @@ vim.keymap.set('i', 'j;', '<ESC><S-a>;<ESC>o', { desc = 'Add semicolon to the en
 vim.keymap.set('i', 'j,', '<ESC><S-a>,<ESC>o', { desc = 'Add comma to the end of the line and open a new one' })
 vim.keymap.set('i', 'jm', '<ESC>o', { desc = 'Open new line in insert mode' })
 
+-- Umlaute
+vim.keymap.set('i', 'ue<Space>', 'ü', { noremap = true })
+vim.keymap.set('i', 'ae', 'ä', { noremap = true })
+vim.keymap.set('i', 'oe', 'ö', { noremap = true })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

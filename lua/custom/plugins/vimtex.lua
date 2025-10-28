@@ -9,5 +9,7 @@ return {
 
     vim.opt.conceallevel = 1
     vim.g.tex_conceal = 'abdmg'
+    -- Dont open warning window when compiling
+    vim.g.vimtex_quickfix_open_on_warning = 0
   end,
 }
